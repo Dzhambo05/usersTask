@@ -1,7 +1,17 @@
 Разработан сервис для работы с клиентами, который предоставляет следующие возможности:  
 1) Рест-Контроллеры, выполняющие основные функции:  
-   Добавление нового клиента, Добавление нового контакта клиента, Получение списка клиентов, Получение информации по заданному клиенту,  
-   Получение списка контактов заданного клиента, Получение списка контактов заданного типа заданного клиента  
+   * @PostMapping("/putUser")
+     public User putUser(@RequestBody UserDto user) -> Добавление нового клиента  
+   *  @PostMapping("/setContact/{id}")
+      public User setContact(@PathVariable UUID id, String contact) -> Добавление нового контакта клиента
+   * @GetMapping("/allUsers")
+     public List<User> allUsers() -> Получение всех клиентов
+   * @GetMapping("/getUser/{id}")
+     public User getUser(@PathVariable UUID id) -> Получение клиента
+   * @GetMapping("/getContacts/{id}")
+     public List<String> getContacts(@PathVariable UUID id) -> Получение списка всех контактов клиента
+   * @GetMapping("/getDefiniteContacts/{id}/{contact}")
+     public List<String> getDefiniteContacts(@PathVariable UUID id, @PathVariable String contact) -> Получение списка контактов определенного типа клиента
 2) Сервисный слой, обрабатывающий запросы контроллера:  
    * При добавлении клиента идет проверка на null и на валидность внесенных данных, и после этого клиент сохраняется в базу  
    * При добавлении нового контакта клиента идет проверка на существование этого клиента в базе и на валидность данных, после обновление данных  
